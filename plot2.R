@@ -1,5 +1,5 @@
-## Script to create plot1.png: a histogram showing two days worth of data on
-## global active power from an individual household
+## Script to create plot2.png: a line graph showing total active power from
+## a household over two days
 ##
 ## Data source:
 ## “Individual household electric power consumption Data Set”

@@ -1,5 +1,6 @@
-## Script to create plot1.png: a histogram showing two days worth of data on
-## global active power from an individual household
+## Script to create plot4.png: a matrix with 3 line graphs showing (1) Total
+## active power, (2) Voltage, and (3) Total reactive power as functions of time
+## Also has a plot with energy usage from 3 submeters as a function as time
 ##
 ## Data source:
 ## “Individual household electric power consumption Data Set”
@@ -50,24 +51,34 @@ subset <- data[index,]
 print('Success')
 
 
-## Plot global active power as a function of time
+## Plot 4 graphs (described in opening comment)
 print('Plotting')
 png('plot4.png')
+
 par(mfrow = c(2,2))
 
 ## Plot 1
-
+with(subset, plot(Time, Global_active_power, type = 'l',
+                  xlab = '',
+                  ylab = "Global Active Power (kilowatts)"))
 ## Plot 2
+with(subset, plot(Time, Voltage, type = 'l',
+                  xlab = 'datetime',
+                  ylab = "Voltage"))
+
+## Plot 3
 with(subset, plot(Time, Sub_metering_1, type = 'l', 
                   ylab = 'Energy sub metering',
                   xlab = ''))
 with(subset, lines(Time, Sub_metering_2, col = 'red'))
 with(subset, lines(Time, Sub_metering_3, col = 'blue'))
-legend('topright', names(subset)[7:9], col = c('black', 'red', 'blue'), lty = 1)
-
-## Plot 3
+legend('topright', names(subset)[7:9], col = c('black', 'red', 'blue'), 
+       lty = 1, bty = 'n')
 
 ## Plot 4
+with(subset, plot(Time, Global_reactive_power, type = 'l',
+                  xlab = 'datetime',
+                  ylab = "Global_reactive_power"))
 
 dev.off()
 print("Success, graph saved as 'plot4.png'")

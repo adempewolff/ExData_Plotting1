@@ -1,5 +1,5 @@
-## Script to create plot1.png: a histogram showing two days worth of data on
-## global active power from an individual household
+## Script to create plot3.png: a line graph showing power usage across three
+## sub-metered ciruits
 ##
 ## Data source:
 ## “Individual household electric power consumption Data Set”
@@ -10,9 +10,6 @@
 ## Script created by Austin Dempewolff (adempewolf@gmail.com) as part of
 ## an assignment for Coursera "Exploratory Data Analysis" course.
 
-
-## Load dependancies
-require(tidyr)
 
 ## Download data if not found locally
 if(!dir.exists('data')) {
@@ -53,14 +50,15 @@ subset <- data[index,]
 print('Success')
 
 
-## Melt 3 sub-metering columns into key-value pair of columns
-
-tidy <- gather(subset, 'Submeter', 'Submeter_value', Sub_metering_1:Sub_metering_3)
-tidy <- transform(tidy, Submeter = factor(Submeter))
-
-## Plot global active power as a function of time
+## Plot energy usaged across 3 sub-meters
 print('Plotting')
-png('plot2.png')
-with(tidy, plot(Time, Submeter_value, col = Submeter))
+png('plot3.png')
+with(subset, plot(Time, Sub_metering_1, type = 'l', 
+                  ylab = 'Energy sub metering',
+                  xlab = ''))
+with(subset, lines(Time, Sub_metering_2, col = 'red'))
+with(subset, lines(Time, Sub_metering_3, col = 'blue'))
+legend('topright', names(subset)[7:9], col = c('black', 'red', 'blue'), 
+       lty = 1)
 dev.off()
-print("Success, graph saved as 'plot2.png'")
+print("Success, graph saved as 'plot3.png'")
