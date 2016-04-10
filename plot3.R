@@ -50,7 +50,7 @@ subset <- data[index,]
 print('Success')
 
 
-## Plot energy usaged across 3 sub-meters
+## Plot energy usage across 3 sub-meters
 print('Plotting')
 png('plot3.png')
 with(subset, plot(Time, Sub_metering_1, type = 'l', 

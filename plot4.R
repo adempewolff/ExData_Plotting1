@@ -1,6 +1,6 @@
-## Script to create plot4.png: a matrix with 3 line graphs showing (1) Total
-## active power, (2) Voltage, and (3) Total reactive power as functions of time
-## Also has a plot with energy usage from 3 submeters as a function as time
+## Script to create plot4.png: a matrix with 4 line graphs showing (1) Total
+## active power, (2) Voltage, and (3) Energy usage across submeters, and 
+## (4) Total reactive power--all as functions of time
 ##
 ## Data source:
 ## “Individual household electric power consumption Data Set”
